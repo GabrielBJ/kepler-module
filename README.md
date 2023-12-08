@@ -15,6 +15,8 @@ $$v_{x0} = -\sqrt{\frac{G\,M}{a}\frac{1+e}{1-e}}$$
 
 $$v_{y0} = 0$$
 
+using Runge-Kutta methods RK2, RK3, RK4.
+
 ## General structure of the module 
 
 ```
