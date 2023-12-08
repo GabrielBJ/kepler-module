@@ -32,7 +32,7 @@ kepler-module-main.zip
 
 ## Using the module as a script 
 
-Download the `midtermpart2.tar` file. Uncompress it and copy the `odekepler` folder to your working directory.
+You can either ownload the `.zip` file `kepler-module-main.zip` or you can clone the repository. Uncompress it and copy the `odekepler` folder to your working directory.
 
 Open in Terminal an run:
 ```
