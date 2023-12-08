@@ -18,9 +18,8 @@ $$v_{y0} = 0$$
 ## General structure of the module 
 
 ```
-midtermpart2.tar
+kepler-module-main.zip
 
-    odekepler
     ├── odekepler
         ├── kepler.py
         ├── __init__.py
