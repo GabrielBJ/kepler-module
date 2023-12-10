@@ -3,15 +3,15 @@ This module generates a simulation of the two-body problem by solving the ODE sy
 
 $$\frac{d\vec{r}}{dt}=\vec{v}$$
 
-$$m\frac{d\vec{v}}{dt}=-\frac{G\,m\,M}{r^3}\vec{r}$$
+$$m\frac{d\vec{v}}{dt}=-\frac{G m M}{r^3}\vec{r}$$
 
 using the initial conditions:
 
 $$x_0 = 0$$
 
-$$y_0 = a\,(1-e)$$
+$$y_0 = a(1-e)$$
 
-$$v_{x0} = -\sqrt{\frac{G\,M}{a}\frac{1+e}{1-e}}$$
+$$v_{x0} = -\sqrt{\frac{G M}{a}\frac{1+e}{1-e}}$$
 
 $$v_{y0} = 0$$
 
