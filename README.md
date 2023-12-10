@@ -85,7 +85,7 @@ system = kp.initialise_system(0.01671, 1, './eart_intial_system.png')
 this will initialise a system with the initial conditions. Now, you can pass this system to one of the three integrators to get the Earth's orbit. : 
 
 ```python
-orbit = earth_orbit = kp.RKIntegrate.RK2(earth_system, 1., "./earth_orbit.txt")
+orbit = kp.RKIntegrate.RK2(earth_system, 1., "./earth_orbit.txt")
 ```
 this will return the integrated orbit of the Earth. Now you can use this orbit to generate an animation using the following function:
 
