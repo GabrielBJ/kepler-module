@@ -3,15 +3,15 @@ This module generates a simulation of the two-body problem by solving the ODE sy
 
 $$\frac{d\vec{r}}{dt}=\vec{v}$$
 
-$$m\frac{d\vec{v}}{dt}=-\frac{G\,m\,M}{r^3}\vec{r}$$
+$$m\frac{d\vec{v}}{dt}=-\frac{G m M}{r^3}\vec{r}$$
 
 using the initial conditions:
 
 $$x_0 = 0$$
 
-$$y_0 = a\,(1-e)$$
+$$y_0 = a(1-e)$$
 
-$$v_{x0} = -\sqrt{\frac{G\,M}{a}\frac{1+e}{1-e}}$$
+$$v_{x0} = -\sqrt{\frac{G M}{a}\frac{1+e}{1-e}}$$
 
 $$v_{y0} = 0$$
 
@@ -80,12 +80,12 @@ import odekpler.kepler as kp
 ```
 initialising a system for e = 0.01671 (Earth's eccentricity) for a period of T=1 year
 ```python
-system = kp.initialise_system(0.01671, 1, './eart_intial_system.png')
+init_system = kp.initialise_system(0.01671, 1, './eart_intial_system.png')
 ```
 this will initialise a system with the initial conditions. Now, you can pass this system to one of the three integrators to get the Earth's orbit. : 
 
 ```python
-orbit = earth_orbit = kp.RKIntegrate.RK2(earth_system, 1., "./earth_orbit.txt")
+orbit = kp.RKIntegrate.RK2(init_system, 1., "./earth_orbit.txt")
 ```
 this will return the integrated orbit of the Earth. Now you can use this orbit to generate an animation using the following function:
 
