@@ -237,6 +237,7 @@ class RKIntegrate:
 
         if save_dir != '':
             np.savetxt(save_dir, data, header = header, delimiter = ',')
+
         elif save_dir == '':
             np.savetxt(f'RK3_integrated_orbit.txt', data, header = header, delimiter = ',')
 
@@ -295,11 +296,11 @@ class RKIntegrate:
 
         if save_dir != '':
             np.savetxt(save_dir, data, header = header, delimiter = ',')
+
         elif save_dir == '':
             np.savetxt(f'RK4_integrated_orbit.txt', data, header = header, delimiter = ',')
 
         return orbit
-
 
 
 def plot_initial_system(system, save_dir = ''):
@@ -313,7 +314,6 @@ def plot_initial_system(system, save_dir = ''):
     save_dir    directory to save the initial system plot (default is '')
     
     '''
-    
     
     fig, ax = plt.subplots(figsize = (8, 8))
 
@@ -344,8 +344,7 @@ def plot_initial_system(system, save_dir = ''):
             (u0[0], u0[1]), frameon=False, boxcoords="data", pad=0)
     ax.add_artist(earth_marker)
     
-
-    
+    # Add text box with initial conditions
     vel_box = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
     fig.text(0.67, 0.82,f'$x$ = {u0[0]:.2e}, $x$ = {u0[1]:.2e}\n $v_x = ${u0[2]:.2e}, $v_y = $ {u0[3]:.2e}', fontsize=10,
             verticalalignment='bottom', horizontalalignment='right', bbox=vel_box)
@@ -361,6 +360,7 @@ def plot_initial_system(system, save_dir = ''):
     
     ax.set_xlim(-2e11, 2e11)
     ax.set_ylim(-2e11, 2.e11)
+
    
     if save_dir == '' :
        
