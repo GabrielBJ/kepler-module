@@ -218,7 +218,7 @@ class RKIntegrate:
         # set initial conditions
         orbit[0, :] = u.T 
         
-        # integrate using RK2
+        # integrate using RK3
         for i in range(0, len(t) - 1):
             
             # define the slopes
@@ -276,7 +276,7 @@ class RKIntegrate:
         # set initial conditions
         orbit[0, :] = u.T 
         
-        # integrate using RK2
+        # integrate using RK4
         for i in range(0, len(t) - 1):
             
             # define the slopes
