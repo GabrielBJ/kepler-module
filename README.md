@@ -34,7 +34,7 @@ kepler-module-main.zip
 
 ## Using the module as a script 
 
-You can either ownload the `.zip` file `kepler-module-main.zip` or you can clone the repository. Uncompress it and copy the `odekepler` folder to your working directory.
+You can either download the `.zip` file `kepler-module-main.zip` or you can clone the repository. Uncompress it and copy the `odekepler` folder to your working directory.
 
 Open in Terminal an run:
 ```
@@ -58,15 +58,15 @@ here,
 ```
 python kepler.py -e 0.25 -T 1 -m RK4 -s "./intial_map.png" -sg "./animation.gif"
 ```
-This example will generate the simulation for the Pluto eccentricity using the RK4 method. Then, it will save the initial map in the `"./intial_map.png"` directory,  and the animation in the `"./animation.gif"` directory.
+This example will generate the simulation for the Pluto eccentricity using the RK4 method. Then, it will save the initial map in the `"./intial_map.png"` directory,  and one you close the displayed original map, the module will start to generate the animation (simulation) and will save it in the `"./animation.gif"` directory.
 
-It will also generate a file called `RK4_integrated_orbit.txt`, which is saved in the current directory. 
+It will also generate a file called `RK4_integrated_orbit.txt`, which is saved in the current directory if the user do not provide a directory. 
 
 ## Importing the module
 You can also import the module in a python notebook for example. 
 
 ### Installation
-For this, download the `midtermpart2.tar` file. Open the file, and go to the `odekepler` folder, which contains the `setup.py` file. 
+For this, download the `kepler-module-main.tar` file. Open the file, and go to the `odekepler` folder, which contains the `setup.py` file. 
 Then, in Terminal run:
 ```
 python setup.py install --user
