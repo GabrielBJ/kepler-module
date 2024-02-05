@@ -113,5 +113,5 @@ You can find examples and the documentation of the methods used here in the `hel
 
 ### Good luck!
 
-# Author
+## Author
 - [J. Gabriel Balarezo] 
