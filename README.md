@@ -112,3 +112,6 @@ this function receives multiple orbits integrated with the same method `RK2, RK3
 You can find examples and the documentation of the methods used here in the `helpfolder`
 
 ### Good luck!
+
+# Author
+- [J. Gabriel Balarezo] 
