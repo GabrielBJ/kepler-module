@@ -189,7 +189,9 @@ class RKIntegrate:
     
     def RK3(system, t_step, save_dir = ''):
         '''
-        Method that integrates the system using the RK3 method, and saves the orbit in the provided directory. If no directory is provided, it will save the file in the current directory.  
+        Method that integrates the system using the RK3 method, and saves 
+        the orbit in the provided directory. If no directory is provided, 
+        it will save the file in the current directory.  
 
         Arguments:
         _________
