@@ -53,8 +53,8 @@ class TwoBodySimulation():
         
         # compute the initial conditions
         u[0] = 0 
-        u[1] = 1.0 * (1 - self.e)
-        u[2] = -1 * np.sqrt(4 * np.pi**2 * (1 + self.e)/(1 - self.e))
+        u[1] = 1.496e11 * (1 - self.e)
+        u[2] = -1 * np.sqrt(8.86893e8 * (1 + self.e)/(1 - self.e))
         u[3] = 0
         
         return u 
@@ -80,7 +80,7 @@ def slope(t, state):
     r = np.sqrt(state[0]**2 + state[1]**2)
 
     # compute G * M_sun
-    k = 4 * np.pi**2
+    k = 1.32679e20 
     
     # initialise the slope vector
     du = np.zeros(4)
@@ -110,8 +110,8 @@ def time_array(T, dt):
     '''
     
     # transform the period and time step to seconds
-    period  = T  # in years
-    dt      = dt # time step in years
+    period  = T * 3.156e+7 # approx. the length of a year in seconds
+    dt      = dt * 86411  # approx. the length of a day in seconds
 
     # compute the time array
     t = np.arange(0, period + dt, dt)
@@ -148,10 +148,9 @@ class RKIntegrate:
         orbit       array containing the integrated orbit (x, y, vx, vy) in SI units
         '''
         print("Integrating system...") 
-
         # compute time array                                                                    
         t       = time_array(system.period, t_step)
-        t_step  = t_step 
+        t_step  = t_step * 86411 # approx. the length of a day in seconds
 
         # compute initial conditions
         u = system.ics()
@@ -176,8 +175,8 @@ class RKIntegrate:
         # save the orbit
         print("Saving orbit...")
 
-        data   = np.column_stack((t, orbit))
-        header = 't [yrs], x [au], y [au], vx [au/yrs], vy [au/yrs]'
+        data = np.column_stack((t, orbit))
+        header = 't [s], x [m], y [m], vx [m/s], vy [m/s]'
 
         if save_dir != '':
             np.savetxt(save_dir, data, header = header, delimiter = ',')
@@ -210,7 +209,7 @@ class RKIntegrate:
 
         # compute time array
         t       = time_array(system.period, t_step)
-        t_step  = t_step 
+        t_step  = t_step * 86411 # approx. the length of a day in seconds
 
         # compute initial conditions
         u = system.ics()
@@ -235,8 +234,8 @@ class RKIntegrate:
         # save the orbit
         print("Saving orbit...")
 
-        data   = np.column_stack((t, orbit))
-        header = 't [yrs], x [au], y [au], vx [au/yrs], vy [au/yrs]'
+        data = np.column_stack((t, orbit))
+        header = 't [s], x [m], y [m], vx [m/s], vy [m/s]'
 
         if save_dir != '':
             np.savetxt(save_dir, data, header = header, delimiter = ',')
@@ -268,7 +267,7 @@ class RKIntegrate:
 
         # compute time array
         t       = time_array(system.period, t_step)
-        t_step  = t_step 
+        t_step  = t_step * 86411 # approx. the length of a day in seconds
 
         # compute initial conditions
         u = system.ics()
@@ -294,8 +293,8 @@ class RKIntegrate:
                 # save the orbit
         print("Saving orbit...")
 
-        data   = np.column_stack((t, orbit))
-        header = 't [yrs], x [au], y [au], vx [au/yrs], vy [au/yrs]'
+        data = np.column_stack((t, orbit))
+        header = 't [s], x [m], y [m], vx [m/s], vy [m/s]'
 
         if save_dir != '':
             np.savetxt(save_dir, data, header = header, delimiter = ',')
@@ -325,18 +324,17 @@ def plot_initial_system(system, save_dir = ''):
     
     # sun and earth images
     earth_img_url = 'https://raw.githubusercontent.com/GabrielBJ/practice-modules/main/earth.png'
-    sun_img_url   = 'https://raw.githubusercontent.com/GabrielBJ/practice-modules/main/sun.png'
+    sun_img_url = 'https://raw.githubusercontent.com/GabrielBJ/practice-modules/main/sun.png'
 
     def fetch_image(path):
         response = requests.get(path)
-        img      = plt.imread(BytesIO(response.content))
-
+        img = plt.imread(BytesIO(response.content))
         return img
     
     #earth_img = plt.imread('earth.png')
     #sun_img = plt.imread('sun.png')
     earth_img = fetch_image(earth_img_url)
-    sun_img   = fetch_image(sun_img_url)
+    sun_img = fetch_image(sun_img_url)
 
     # include the images
 
@@ -358,12 +356,12 @@ def plot_initial_system(system, save_dir = ''):
     
     # decorate the plot
     ax.set_title(f"Initial system e ={system.e:.2f}")
-    ax.set_xlabel(r'$x$ [au]')
-    ax.set_ylabel(r'$y$ [au]')
+    ax.set_xlabel(r'$x$ [m]')
+    ax.set_ylabel(r'$y$ [m]')
     ax.grid(True)
     
-    ax.set_xlim(1.5, 1.5)
-    ax.set_ylim(1.5, 1.5)
+    ax.set_xlim(-2e11, 2e11)
+    ax.set_ylim(-2e11, 2.e11)
 
    
     if save_dir == '' :
@@ -372,8 +370,6 @@ def plot_initial_system(system, save_dir = ''):
 
     else:
         plt.savefig(save_dir)
-
-
 
 def animation_orbit(orbit, e, save_dir = ''):
     '''
@@ -397,18 +393,17 @@ def animation_orbit(orbit, e, save_dir = ''):
 
     # sun and earth images
     earth_img_url = 'https://raw.githubusercontent.com/GabrielBJ/practice-modules/main/earth.png'
-    sun_img_url   = 'https://raw.githubusercontent.com/GabrielBJ/practice-modules/main/sun.png'
+    sun_img_url = 'https://raw.githubusercontent.com/GabrielBJ/practice-modules/main/sun.png'
 
     def fetch_image(path):
         response = requests.get(path)
-        img      = plt.imread(BytesIO(response.content))
-
+        img = plt.imread(BytesIO(response.content))
         return img
     
     #earth_img = plt.imread('earth.png')
     #sun_img = plt.imread('sun.png')
     earth_img = fetch_image(earth_img_url)
-    sun_img   = fetch_image(sun_img_url)
+    sun_img = fetch_image(sun_img_url)
 
 
     earth_marker = AnnotationBbox(OffsetImage(earth_img, zoom=0.03), \
@@ -427,20 +422,20 @@ def animation_orbit(orbit, e, save_dir = ''):
 
 
     ax.set_title(f"Earth's orbit e = {e:.2f}")
-    ax.set_xlabel(r'$x$ [au]')
-    ax.set_ylabel(r'$y$ [au]')
+    ax.set_xlabel(r'$x$ [m]')
+    ax.set_ylabel(r'$y$ [m]')
     ax.grid(True)
     
-    ax.set_xlim(-1.5, 1.5)
+    ax.set_xlim(-2e11, 2e11)
     
     if e < 0.3:
-        ax.set_ylim(-1.5, 1.5)
+        ax.set_ylim(-2e11, 2.e11)
     elif e >= 0.3 and e < 0.5:
-        ax.set_ylim(-2, 1)
+        ax.set_ylim(-3e11, 2.e11)
     elif e >= 0.5 and e < 0.7:
-        ax.set_ylim(-2, 0.5)
+        ax.set_ylim(-3e11, 1.5e11)
     else:
-        ax.set_ylim(-2, 1)
+        ax.set_ylim(-3e11, 1e11)
 
 
     def update(frame):
@@ -458,12 +453,12 @@ def animation_orbit(orbit, e, save_dir = ''):
         return line2, earth_marker, text_annotation
     
     if save_dir == '':
-        ani = FuncAnimation(fig = fig, func = update, frames = len(x), interval = 30, blit = True)
-        #ani.save('./orbit.gif', writer='pillow', fps=30)
+        ani = FuncAnimation(fig = fig, func = update, frames = len(x), interval = 10, blit = True)
+        ani.save('./orbit.gif', writer='pillow', fps=30)
         plt.show()
     elif save_dir != '':
-        ani = FuncAnimation(fig = fig, func = update, frames = len(x), interval = 30, blit = True)
-        #ani.save(save_dir, writer='pillow', fps=30)
+        ani = FuncAnimation(fig = fig, func = update, frames = len(x), interval = 10, blit = True)
+        ani.save(save_dir, writer='pillow', fps=30)
         plt.show()
 
 
@@ -536,35 +531,34 @@ def main():
     '''
     matplotlib.use('TkAgg')
 
-    parser = argparse.ArgumentParser(description = 'Two-body simulation')
-    parser.add_argument('-e', '--eccentricity', type = float, default = 0.0167, help = 'eccentricity of the orbit')
-    parser.add_argument('-T', '--period', type = float, default = 1, help = 'period of the orbit in years')
-    parser.add_argument('-dt', '--timestep', type = float, default = 0.01, help = 'time step in yrs')
-    parser.add_argument('-m', '--method', type = str, default = 'RK2', help = 'integration method')
-    parser.add_argument('-s', '--savemap', type = str, default = '', help = 'directory to save the initial system')
+    parser = argparse.ArgumentParser(description='Two-body simulation')
+    parser.add_argument('-e', '--eccentricity', type=float, default=0.0167, help='eccentricity of the orbit')
+    parser.add_argument('-T', '--period', type=float, default=1, help='period of the orbit in years')
+    parser.add_argument('-m', '--method', type=str, default='RK2', help='integration method')
+    parser.add_argument('-s', '--savemap', type=str, default='', help='directory to save the initial system')
     #parser.add_argument('-so', '--saveorbit', type=str, default='', help='directory to save the integrated orbit')
-    parser.add_argument('-sg', '--savegif', type = str, default = '', help = 'directory to save the gif of the orbit')
+    parser.add_argument('-sg', '--savegif', type=str, default='', help='directory to save the gif of the orbit')
 
     args = parser.parse_args()
 
     print("Initialising system...")
     system = initialise_system(args.eccentricity, args.period, args.savemap)
 
-    #print("Integrating system...")
+    print("Integrating system...")
     if args.method == 'RK2':
-        orbit = RKIntegrate.RK2(system, args.timestep)
+        orbit = RKIntegrate.RK2(system, 1)
     elif args.method == 'RK3':
-        orbit = RKIntegrate.RK3(system, args.timestep)
+        orbit = RKIntegrate.RK3(system, 1)
     else:
         args.method == 'RK4'
-        orbit = RKIntegrate.RK4(system, args.timestep)
+        orbit = RKIntegrate.RK4(system, 1)
 
     # save the orbit
-    #print("Saving orbit...")
-    t    = time_array(args.period, args.timestep)
+    print("Saving orbit...")
+    t = time_array(args.period, 1)
     data = np.column_stack((t, orbit))
 
-    header = 't [yrs], x [au], y [au], vx [au/yrs], vy [au/yrs]'
+    header = 't [s], x [m], y [m], vx [m/s], vy [m/s]'
     np.savetxt(f'{args.method}_integrated_orbit.txt', data, header = header, delimiter = ',')
     
     print("Plotting orbit...")
