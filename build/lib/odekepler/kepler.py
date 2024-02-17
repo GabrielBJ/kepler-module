@@ -67,13 +67,13 @@ def slope(t, state):
     Arguments:
     _________
 
-    t       time in seconds
-    state   vector containing the state of the system (x, y, vx, vy) in SI units at time t
+    t       time in years
+    state   vector containing the state of the system (x, y, vx, vy) in astronomic units at time t
 
     Returns:
     _______
 
-    du      vector containing the slope of the system (vx, vy, ax, ay) in SI units at time t
+    du      vector containing the slope of the system (vx, vy, ax, ay) in astronomic units per year
     '''
 
     # compute the distance from the sun
@@ -101,12 +101,12 @@ def time_array(T, dt):
     _________
 
     T       period of the orbit in years
-    dt      time step in days
+    dt      time step in years
 
     Returns:
     _______
 
-    t       time array in seconds
+    t       time array in years
     '''
     
     # transform the period and time step to seconds
@@ -362,8 +362,8 @@ def plot_initial_system(system, save_dir = ''):
     ax.set_ylabel(r'$y$ [au]')
     ax.grid(True)
     
-    ax.set_xlim(1.5, 1.5)
-    ax.set_ylim(1.5, 1.5)
+    ax.set_xlim(-1.5, 1.5)
+    ax.set_ylim(-1.5, 1.5)
 
    
     if save_dir == '' :
@@ -459,11 +459,11 @@ def animation_orbit(orbit, e, save_dir = ''):
     
     if save_dir == '':
         ani = FuncAnimation(fig = fig, func = update, frames = len(x), interval = 30, blit = True)
-        #ani.save('./orbit.gif', writer='pillow', fps=30)
+        ani.save('./orbit.gif', writer='pillow', fps=30)
         plt.show()
     elif save_dir != '':
         ani = FuncAnimation(fig = fig, func = update, frames = len(x), interval = 30, blit = True)
-        #ani.save(save_dir, writer='pillow', fps=30)
+        ani.save(save_dir, writer='pillow', fps=30)
         plt.show()
 
 
