@@ -1,9 +1,0 @@
-README.md
-setup.py
-odekepler/__init__.py
-odekepler/kepler.py
-odekepler.egg-info/PKG-INFO
-odekepler.egg-info/SOURCES.txt
-odekepler.egg-info/dependency_links.txt
-odekepler.egg-info/requires.txt
-odekepler.egg-info/top_level.txt
