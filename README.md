@@ -50,15 +50,16 @@ here,
 ```
 -e -> this flag takes as input the eccentricity of the orbit.
 -T -> this flag takes as input the period in years.
+-dt -> this flag takes as input the time step to be used to integrate the orbit. 
 -m -> this flag takes as input the method to perform the integration (RK2, RK3, RK4)
 -s -> this flag takes as input the directory to save the initial map
 -sg -> this flag takes as input the directory to save the gif animation of the orbit
 ```
 ### Example:
 ```
-python kepler.py -e 0.25 -T 1 -m RK4 -s "./intial_map.png" -sg "./animation.gif"
+python kepler.py -e 0.25 -T 1 -dt 0.01 -m RK4 -s "./intial_map.png" -sg "./animation.gif"
 ```
-This example will generate the simulation for the Pluto eccentricity using the RK4 method. Then, it will save the initial map in the `"./intial_map.png"` directory,  and one you close the displayed original map, the module will start to generate the animation (simulation) and will save it in the `"./animation.gif"` directory.
+This example will generate the simulation for Pluto's eccentricity using the RK4 method. Then, it will save the initial map in the `"./intial_map.png"` directory,  and once you close the displayed initial map, the module will start to generate the animation (simulation) and will save it in the `"./animation.gif"` directory.
 
 It will also generate a file called `RK4_integrated_orbit.txt`, which is saved in the current directory if the user do not provide a directory. 
 
