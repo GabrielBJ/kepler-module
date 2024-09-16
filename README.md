@@ -44,7 +44,7 @@ this will place you in the directory where the `kepler.py` file is placed.
 
 Now, you are ready to use the `kepler.py` module as a script: 
 ```
-python kepler.py -e  -T  -m  -s  -sg
+python kepler.py -e  -T -dt -m  -s  -sg
 ```
 here,
 ```
